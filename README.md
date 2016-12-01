@@ -1,6 +1,6 @@
 # Salesforce Scripts
 
-This application is a bed for creation of node scripts to perform actions.
+This application is a way to execute code on JSForce.  Scripts need to be created for any actions and then run from the command line with node.
 
 Each file will need to be modified and curated to the specific action desired.
 
