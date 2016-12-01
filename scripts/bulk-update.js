@@ -13,9 +13,16 @@ var connect = require('../connect');
 //         console.log(rets);
 //     });
 // })
-const QUERY = 'SELECT Id FROM invoiceit_s__Invoice_Lines__c  WHERE Charge_Type_Snapshot__c = null';
-const OBJECT_API_NAME = 'invoiceit_s__Invoice_Lines__c';
+// const QUERY = 'SELECT Id FROM invoiceit_s__Invoice_Lines__c  WHERE Charge_Type_Snapshot__c = null';
+// const OBJECT_API_NAME = 'invoiceit_s__Invoice_Lines__c';
+//const UPDATE_KEY = null;
+//const UPDATE_VAL = null;
+
+const QUERY = 'SELECT Id, Share_Notice_Dynamic_Visual_Content__c FROM invoiceit_s__Invoice__c  WHERE Share_Notice_Dynamic_Visual_Content__c = \'a3di0000000DBUg\'';
+const OBJECT_API_NAME = 'invoiceit_s__Invoice__c';
 const OPERATION = 'update';
+const UPDATE_KEY = 'Share_Notice_Dynamic_Visual_Content__c';
+const UPDATE_VAL = null;
 
 connect.login()
 .catch(err => console.log(err))
@@ -25,7 +32,11 @@ connect.login()
     var currSet = [];
     var query = conn.query(QUERY)
     .on("record", function(record) {
-        currSet.push(record);
+        if(UPDATE_KEY) {
+            record[UPDATE_KEY] = UPDATE_VAL;
+            currSet.push(record);
+        }
+
         if(currSet.length === 10000) {
             console.log(`Hit 10K records - pushing and clearing`);
             records.push(currSet);
