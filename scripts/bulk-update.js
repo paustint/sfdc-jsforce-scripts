@@ -1,5 +1,5 @@
 var jsforce = require('jsforce');
-var connect = require('./connect');
+var connect = require('../connect');
 
 // connect.login()
 // .catch(err => console.log(err))
